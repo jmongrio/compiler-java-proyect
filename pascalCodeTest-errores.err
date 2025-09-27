@@ -1,0 +1,188 @@
+0000 
+0001 
+0002 program calendario;
+0003 uses crt, dos;
+0004 
+0005 const borde = #205#205#205#205#205#205#205#205#205;
+0006 const months       : array[0..11] of integer = (31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+0007 const year_regular : array[0..11] of integer = ( 0,  3,  3,  6,  1,  4,  6,  2,  5,  0,  3,  5);
+0008 const year_bisiesto : array[0..11] of integer = ( 0,  3,  4,  0,  2,  5,  0,  3,  6,  1,  4,  6);
+0009 const nombres      : array[0..11] of string  = (
+0010     '  Enero   ', ' Febrero  ', '  Marzo   ', '  Abril   ',
+0011     '   Mayo   ', '  Junio   ', '  Julio   ', '  Agosto  ',
+0012     'Septiembre', ' Octubre  ', 'Noviembre ', 'Diciembre ');
+0013 
+0014 var meses : array[0..11] of integer;
+0015 var tecla : integer;
+0016 var i : integer;
+0017 var dia : integer;
+0018 var modulo : integer;
+0019 var day : word;
+0020 var year : word;
+0021 var mes : word;
+0022 var dayofweek : word;
+0023 
+0024 begin
+0025 {inicio del programa}
+0026     for i:=0 to 11 do
+0027         begin
+0028             meses[i] := months[i];
+0029         end;
+0030     getdate (year, mes , day, dayofweek);
+0031     dec (mes);
+0032     repeat
+0033         begin
+0034             if (((year mod 4) = 0) and ((year mod 100) <> 0)) or ((year mod 400) = 0) then
+0035                 begin
+0036                     meses[1] := 29;
+0037                     modulo := year_bisiesto[mes];
+0038                 end
+0039             else
+0040                 begin
+0041                     meses[1] := 28;
+0042                     modulo := year_regular[mes];
+0043                 end;
+0044             dia := 1 - ((year - 1) mod 7 + ((year - 1) div 4 - (3 * ((year - 1) div 100 + 1)) div 4) mod 7 + modulo + 1) mod 7;
+0045             clrscr;
+0046             writeln ('          '#17, nombres[mes], #16'                       '#30, year, #31);
+0047             writeln (#201, borde, #203, borde, #203, borde, #203, borde, #203, borde, #203, borde, #203, borde, #187);
+0048             write   (#186' Domingo '#186'  Lunes  '#186' Martes  '#186'Mi'#130'rcoles'#186' Jueves  '#186' Viernes ');
+0049             writeln (#186' S'#160'bado  '#186);
+0050             writeln (#204, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #185);
+0051             while dia <= meses[mes] do
+0052                 begin
+0053                     for i:=0 to 6 do
+0054                         begin
+0055                             if (dia<1) or (dia>meses[mes]) then
+0056                                 begin
+0057                                     write (#186'         ')
+0058                                 end	
+0059                             else
+0060                                 begin
+0061                                     write (#186'   ', dia:2, '    ');
+0062                                 end;	
+0063                             inc (dia);
+0064                         end;
+0065                     writeln (#186);
+0066                     if dia<=meses[mes] then
+0067                         begin
+0068                             writeln (#204, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #185)
+0069                         end	
+0070                     else
+0071                         begin
+0072                             writeln (#200, borde, #202, borde, #202, borde, #202, borde, #202, borde, #202, borde, #202, borde, #188);
+0073                         end; 
+0074                 end;
+0075             writeln ('Presione '#27' y '#26' para cambiar de mes.');
+0076             writeln ('Presione '#24' y '#25' para cambiar de a'#164'o.');
+0077             writeln ('Presione ESC para salir.');
+0078             repeat
+0079                 begin
+0080                     tecla := ord (readkey);
+0081                 end;
+0082             until (tecla=0) or (tecla=27);
+0083             if tecla = 0 then
+0084                 begin
+0085                     case ord (readkey) of
+0086                         72: inc (year);
+0087                         80: dec (year);
+0088                         77:
+0089                         if mes<11 then
+0090                             begin
+0091                                 inc (mes);
+0092                             end	
+0093                         else
+0094                             begin
+0095                                 inc (year);
+0096                                 mes := 0;
+0097                             end;
+0098                         75:
+0099                             if mes <> 0 then
+0100                                 begin
+0101                                     dec (mes);
+0102                                 end
+0103                             else
+0104                                 begin
+0105                                     dec (year);
+0106                                     mes := 11;
+0107                                 end;
+0108                end;
+0109           end;	
+0110         end;
+0111     until tecla = 27;
+0112     //fin del programa
+0113 end. 
+Error 0200 en línea 0: No encuentra la palabra inicial program
+Error 0405 en línea 5: Valor de constante inválido: #205#205#205#205#205#205#205#205#205
+Error 0403 en línea 6: Identificador de constante no válido: months       : array[0..11] of integer
+Error 0405 en línea 6: Valor de constante inválido: (31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+Error 0403 en línea 7: Identificador de constante no válido: year_regular : array[0..11] of integer
+Error 0405 en línea 7: Valor de constante inválido: ( 0,  3,  3,  6,  1,  4,  6,  2,  5,  0,  3,  5)
+Error 0403 en línea 8: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
+Error 0405 en línea 8: Valor de constante inválido: ( 0,  3,  4,  0,  2,  5,  0,  3,  6,  1,  4,  6)
+Error 0401 en línea 9: La declaración de constante debe finalizar con punto y coma
+Error 0403 en línea 9: Identificador de constante no válido: nombres      : array[0..11] of string
+Error 0405 en línea 9: Valor de constante inválido: (
+Error 0400 en línea 24: Constantes declaradas después de begin no son válidas
+Error 0600 en línea 27: Se encontró más de un begin en el archivo
+Error 0603 en línea 29: El fin del programa debe ser 'end.' exactamente, con punto al final
+Error 0604 en línea 29: No puede haber líneas ni comentarios después de end
+Error 0600 en línea 33: Se encontró más de un begin en el archivo
+Error 0600 en línea 35: Se encontró más de un begin en el archivo
+Error 0603 en línea 38: El fin del programa debe ser 'end.' exactamente, con punto al final
+Error 0604 en línea 38: No puede haber líneas ni comentarios después de end
+Error 0600 en línea 40: Se encontró más de un begin en el archivo
+Error 0603 en línea 43: El fin del programa debe ser 'end.' exactamente, con punto al final
+Error 0604 en línea 43: No puede haber líneas ni comentarios después de end
+Error 0600 en línea 52: Se encontró más de un begin en el archivo
+Error 0600 en línea 54: Se encontró más de un begin en el archivo
+Error 0600 en línea 56: Se encontró más de un begin en el archivo
+Error 0603 en línea 58: El fin del programa debe ser 'end.' exactamente, con punto al final
+Error 0604 en línea 58: No puede haber líneas ni comentarios después de end
+Error 0600 en línea 60: Se encontró más de un begin en el archivo
+Error 0603 en línea 62: El fin del programa debe ser 'end.' exactamente, con punto al final
+Error 0604 en línea 62: No puede haber líneas ni comentarios después de end
+Error 0603 en línea 64: El fin del programa debe ser 'end.' exactamente, con punto al final
+Error 0604 en línea 64: No puede haber líneas ni comentarios después de end
+Error 0600 en línea 67: Se encontró más de un begin en el archivo
+Error 0603 en línea 69: El fin del programa debe ser 'end.' exactamente, con punto al final
+Error 0604 en línea 69: No puede haber líneas ni comentarios después de end
+Error 0600 en línea 71: Se encontró más de un begin en el archivo
+Error 0603 en línea 73: El fin del programa debe ser 'end.' exactamente, con punto al final
+Error 0604 en línea 73: No puede haber líneas ni comentarios después de end
+Error 0603 en línea 74: El fin del programa debe ser 'end.' exactamente, con punto al final
+Error 0604 en línea 74: No puede haber líneas ni comentarios después de end
+Error 0600 en línea 79: Se encontró más de un begin en el archivo
+Error 0603 en línea 81: El fin del programa debe ser 'end.' exactamente, con punto al final
+Error 0604 en línea 81: No puede haber líneas ni comentarios después de end
+Error 0600 en línea 84: Se encontró más de un begin en el archivo
+Error 0600 en línea 90: Se encontró más de un begin en el archivo
+Error 0603 en línea 92: El fin del programa debe ser 'end.' exactamente, con punto al final
+Error 0604 en línea 92: No puede haber líneas ni comentarios después de end
+Error 0600 en línea 94: Se encontró más de un begin en el archivo
+Error 0603 en línea 97: El fin del programa debe ser 'end.' exactamente, con punto al final
+Error 0604 en línea 97: No puede haber líneas ni comentarios después de end
+Error 0600 en línea 100: Se encontró más de un begin en el archivo
+Error 0603 en línea 102: El fin del programa debe ser 'end.' exactamente, con punto al final
+Error 0604 en línea 102: No puede haber líneas ni comentarios después de end
+Error 0600 en línea 104: Se encontró más de un begin en el archivo
+Error 0603 en línea 107: El fin del programa debe ser 'end.' exactamente, con punto al final
+Error 0604 en línea 107: No puede haber líneas ni comentarios después de end
+Error 0603 en línea 108: El fin del programa debe ser 'end.' exactamente, con punto al final
+Error 0604 en línea 108: No puede haber líneas ni comentarios después de end
+Error 0603 en línea 109: El fin del programa debe ser 'end.' exactamente, con punto al final
+Error 0604 en línea 109: No puede haber líneas ni comentarios después de end
+Error 0603 en línea 110: El fin del programa debe ser 'end.' exactamente, con punto al final
+Error 0604 en línea 110: No puede haber líneas ni comentarios después de end
+Error 0703 en línea 46: Contenido inválido en Write/WriteLn: '          '#17, nombres[mes], #16'                       '#30, year, #31
+Error 0703 en línea 47: Contenido inválido en Write/WriteLn: #201, borde, #203, borde, #203, borde, #203, borde, #203, borde, #203, borde, #203, borde, #187
+Error 0703 en línea 48: Contenido inválido en Write/WriteLn: #186' Domingo '#186'  Lunes  '#186' Martes  '#186'Mi'#130'rcoles'#186' Jueves  '#186' Viernes '
+Error 0703 en línea 49: Contenido inválido en Write/WriteLn: #186' S'#160'bado  '#186
+Error 0703 en línea 50: Contenido inválido en Write/WriteLn: #204, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #185
+Error 0700 en línea 57: La instrucción Write/WriteLn debe finalizar con punto y coma
+Error 0703 en línea 57: Contenido inválido en Write/WriteLn: #186'         '
+Error 0703 en línea 61: Contenido inválido en Write/WriteLn: #186'   ', dia:2, '    '
+Error 0703 en línea 65: Contenido inválido en Write/WriteLn: #186
+Error 0700 en línea 68: La instrucción Write/WriteLn debe finalizar con punto y coma
+Error 0703 en línea 68: Contenido inválido en Write/WriteLn: #204, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #185
+Error 0703 en línea 72: Contenido inválido en Write/WriteLn: #200, borde, #202, borde, #202, borde, #202, borde, #202, borde, #202, borde, #202, borde, #188
