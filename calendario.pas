@@ -1,4 +1,3 @@
-// comentarios
 program calendario;
 uses crt, dos;
 
@@ -110,4 +109,4 @@ begin
         end;
     until tecla = 27;
     //fin del programa
-end. 
+end.

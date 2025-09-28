@@ -1,28 +1,28 @@
-0000 // comentarios
-0001 program calendario;
-0002 uses crt, dos;
-0003 
-0004 const borde = #205#205#205#205#205#205#205#205#205;
-0005 const months       : array[0..11] of integer = (31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
-0006 const year_regular : array[0..11] of integer = ( 0,  3,  3,  6,  1,  4,  6,  2,  5,  0,  3,  5);
-0007 const year_bisiesto : array[0..11] of integer = ( 0,  3,  4,  0,  2,  5,  0,  3,  6,  1,  4,  6);
-0008 const nombres      : array[0..11] of string  = (
-0009     '  Enero   ', ' Febrero  ', '  Marzo   ', '  Abril   ',
-0010     '   Mayo   ', '  Junio   ', '  Julio   ', '  Agosto  ',
-0011     'Septiembre', ' Octubre  ', 'Noviembre ', 'Diciembre ');
-0012 
-0013 var meses : array[0..11] of integer;
-0014 var tecla : integer;
-0015 var i : integer;
-0016 var dia : integer;
-0017 var modulo : integer;
-0018 var day : word;
-0019 var year : word;
-0020 var mes : word;
-0021 var dayofweek : word;
-0022 
-0023 begin
-0024 {inicio del programa}
+0000 program calendario;
+0001 uses crt, dos;
+0002 
+0003 const borde = #205#205#205#205#205#205#205#205#205;
+0004 const months       : array[0..11] of integer = (31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+0005 const year_regular : array[0..11] of integer = ( 0,  3,  3,  6,  1,  4,  6,  2,  5,  0,  3,  5);
+0006 const year_bisiesto : array[0..11] of integer = ( 0,  3,  4,  0,  2,  5,  0,  3,  6,  1,  4,  6);
+0007 const nombres      : array[0..11] of string  = (
+0008     '  Enero   ', ' Febrero  ', '  Marzo   ', '  Abril   ',
+0009     '   Mayo   ', '  Junio   ', '  Julio   ', '  Agosto  ',
+0010     'Septiembre', ' Octubre  ', 'Noviembre ', 'Diciembre ');
+0011 
+0012 var meses : array[0..11] of integer;
+0013 var tecla : integer;
+0014 var i : integer;
+0015 var dia : integer;
+0016 var modulo : integer;
+0017 var day : word;
+0018 var year : word;
+0019 var mes : word;
+0020 var dayofweek : word;
+0021 
+0022 begin
+0023 {inicio del programa}
+0024 var 2meses : array[0..11] of integer;
 0025     for i:=0 to 11 do
 0026         begin
 0027             meses[i] := months[i];
@@ -110,5 +110,6 @@
 0109         end;
 0110     until tecla = 27;
 0111     //fin del programa
-0112 end. 
-Error 0205 en línea 0: No deben haber comentarios antes de la palabra inicial program
+0112 end.
+Error 505 en línea 0024: La declaración de variable deben ubicarse después de declarar correctamente program y uses y antes del begin
+Error 506 en línea 0024: Identificador de la variable solo debe iniciar con una letra o guión bajo

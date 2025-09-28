@@ -2,6 +2,7 @@ package compiladores1;
 
 import compiladores1.Models.ErrorDictionary;
 import compiladores1.Models.ResponseModel;
+import compiladores1.Validations.Identifiers;
 import compiladores1.Validations.Program;
 import compiladores1.Validations.Uses;
 import java.util.*;
@@ -42,7 +43,12 @@ public class PascalInterpreter {
         Uses useValidation = new Uses(lines, baseName);
         useValidation.validateUses();
         errors.addAll(useValidation.getErrors());
-//        validateUses();
+
+        // Validation identifiers
+        Identifiers identifierValidation = new Identifiers(lines);
+        identifierValidation.validateIdentifier();;
+        errors.addAll(identifierValidation.getErrors());
+        
 //        validateConst();
 //        validateVar();
 //        validateBeginEnd();
