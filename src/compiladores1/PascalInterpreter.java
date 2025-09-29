@@ -50,7 +50,7 @@ public class PascalInterpreter {
 
         // Validation variables
         VVariables identifierValidation = new VVariables(lines);
-        identifierValidation.validateIdentifier();;
+        identifierValidation.validateIdentifier();
         errors.addAll(identifierValidation.getErrors());
         
         // Validation constants
