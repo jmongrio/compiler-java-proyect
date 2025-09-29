@@ -63,7 +63,7 @@ public class VConstants {
 
                     value = value.replace(";", "").trim();
 
-                    validateIdentifierName(identifierName, lineNumber);
+//                    validateIdentifierName(identifierName, lineNumber);
 
                     if (!(value.matches("^[0-9]+$") || value.matches("^'.*'$"))) {
                         addError(405, lineNumber, value);
@@ -108,25 +108,25 @@ public class VConstants {
         return token.equals("begin") || existBegin;
     }
 
-    private void validateIdentifierName(String identifierName, int lineNumber) {
-        if (identifierName == null) {
-            return;
-        }
-
-        if (ReservedWordDictionary.isReserved(identifierName)) {
-            addError(404, lineNumber, identifierName);
-        }
-
-        for (int i = 0; i < identifierName.length(); i++) {
-            char c = identifierName.charAt(i);
-            if (i == 0 && !(Character.isLetter(c) || c == '_')) {
-                addError(403, lineNumber, identifierName);
-            }
-            if (!(Character.isLetter(c) || c == '_')) {
-                addError(403, lineNumber, identifierName);
-            }
-        }
-    }
+//    private void validateIdentifierName(String identifierName, int lineNumber) {
+//        if (identifierName == null) {
+//            return;
+//        }
+//
+//        if (ReservedWordDictionary.isReserved(identifierName)) {
+//            addError(404, lineNumber, identifierName);
+//        }
+//
+//        for (int i = 0; i < identifierName.length(); i++) {
+//            char c = identifierName.charAt(i);
+//            if (i == 0 && !(Character.isLetter(c) || c == '_')) {
+//                addError(403, lineNumber, identifierName);
+//            }
+//            if (!(Character.isLetter(c) || c == '_')) {
+//                addError(403, lineNumber, identifierName);
+//            }
+//        }
+//    }
 
     private void registerConstant(String name, String value, int lineNumber) {
         if (constantTable.containsKey(name)) {

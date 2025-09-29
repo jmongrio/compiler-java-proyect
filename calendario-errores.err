@@ -1,4 +1,4 @@
-0000 writeln ("" );
+0000 const borde = #205;
 0001 program calendario;
 0002 uses crt, dos;
 0003 
@@ -114,5 +114,15 @@
 ----------------------
 |       Errores      |
 ----------------------
-Error 705 en línea 0000: La sentencia Write/WriteLn no debe estar antes de la sentencia program
-Error 707 en línea 0000: La sentencia Write/WriteLn debe estar entre la sentencia begin y la sentencia end.
+Error 400 en línea 0000: Constantes declaradas después de begin no son válidas
+Error 405 en línea 0004: Valor de constante inválido: #205#205#205#205#205#205#205#205#205
+Error 405 en línea 0005: Valor de constante inválido: (31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+Error 405 en línea 0006: Valor de constante inválido: ( 0,  3,  3,  6,  1,  4,  6,  2,  5,  0,  3,  5)
+Error 405 en línea 0007: Valor de constante inválido: ( 0,  3,  4,  0,  2,  5,  0,  3,  6,  1,  4,  6)
+Error 401 en línea 0008: La declaración de constante debe finalizar con punto y coma
+Error 405 en línea 0008: Valor de constante inválido: (
+Error 403 en línea 0006: Identificador de constante no válido: year_regular : array[0..11] of integer
+Error 403 en línea 0007: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
+Error 403 en línea 0008: Identificador de constante no válido: nombres      : array[0..11] of string
+Error 403 en línea 0005: Identificador de constante no válido: months       : array[0..11] of integer
+Error 403 en línea 0004: Identificador de constante no válido: borde

@@ -58,9 +58,9 @@ public class VVariables {
 
             validateIdentifierName(identifierName, lineNumber);
 
-            if (identifierName != null && type != null) {
-                registerVariable(identifierName, type, lineNumber);
-            }
+//            if (identifierName != null && type != null) {
+//                registerVariable(identifierName, type, lineNumber);
+//            }
 
             validateLineEnding(isVar, line, lineNumber);
 
@@ -113,21 +113,21 @@ public class VVariables {
         }
     }
 
-    private void registerVariable(String identifierName, String type, int lineNumber) {
-        if (!type.equalsIgnoreCase("integer") &&
-            !type.equalsIgnoreCase("string") &&
-            !type.equalsIgnoreCase("word")) {
-            addError(511, lineNumber, type);
-            return;
-        }
-
-        if (symbolTable.containsKey(identifierName)) {
-            addError(510, lineNumber, identifierName);
-            return;
-        }
-
-        symbolTable.put(identifierName, new Symbol(identifierName, type, lineNumber));
-    }
+//    private void registerVariable(String identifierName, String type, int lineNumber) {
+//        if (!type.equalsIgnoreCase("integer") &&
+//            !type.equalsIgnoreCase("string") &&
+//            !type.equalsIgnoreCase("word")) {
+//            addError(511, lineNumber, type);
+//            return;
+//        }
+//
+//        if (symbolTable.containsKey(identifierName)) {
+//            addError(510, lineNumber, identifierName);
+//            return;
+//        }
+//
+//        symbolTable.put(identifierName, new Symbol(identifierName, type, lineNumber));
+//    }
 
     private void checkVariableUsage(String token, int lineNumber, String line) {
         if (!symbolTable.containsKey(token)) return;
