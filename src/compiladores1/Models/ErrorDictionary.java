@@ -42,6 +42,7 @@ public class ErrorDictionary {
         compilerErrors.put(504, "Tipo de variable no válido");
         compilerErrors.put(505, "La declaración de variable deben ubicarse después de declarar correctamente program y uses y antes del begin");
         compilerErrors.put(506, "Identificador de la variable solo debe iniciar con una letra o guión bajo");
+        compilerErrors.put(507, "Identificador de la variable solo debe contener letras o guiones bajo");
 
         // validateBeginEnd
         compilerErrors.put(600, "Se encontró más de un begin en el archivo");

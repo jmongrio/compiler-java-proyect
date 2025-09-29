@@ -22,94 +22,170 @@
 0021 
 0022 begin
 0023 {inicio del programa}
-0024 var 2meses : array[0..11] of integer;
-0025     for i:=0 to 11 do
-0026         begin
-0027             meses[i] := months[i];
-0028         end;
-0029     getdate (year, mes , day, dayofweek);
-0030     dec (mes);
-0031     repeat
-0032         begin
-0033             if (((year mod 4) = 0) and ((year mod 100) <> 0)) or ((year mod 400) = 0) then
-0034                 begin
-0035                     meses[1] := 29;
-0036                     modulo := year_bisiesto[mes];
-0037                 end
-0038             else
-0039                 begin
-0040                     meses[1] := 28;
-0041                     modulo := year_regular[mes];
-0042                 end;
-0043             dia := 1 - ((year - 1) mod 7 + ((year - 1) div 4 - (3 * ((year - 1) div 100 + 1)) div 4) mod 7 + modulo + 1) mod 7;
-0044             clrscr;
-0045             writeln ('          '#17, nombres[mes], #16'                       '#30, year, #31);
-0046             writeln (#201, borde, #203, borde, #203, borde, #203, borde, #203, borde, #203, borde, #203, borde, #187);
-0047             write   (#186' Domingo '#186'  Lunes  '#186' Martes  '#186'Mi'#130'rcoles'#186' Jueves  '#186' Viernes ');
-0048             writeln (#186' S'#160'bado  '#186);
-0049             writeln (#204, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #185);
-0050             while dia <= meses[mes] do
-0051                 begin
-0052                     for i:=0 to 6 do
-0053                         begin
-0054                             if (dia<1) or (dia>meses[mes]) then
-0055                                 begin
-0056                                     write (#186'         ')
-0057                                 end	
-0058                             else
-0059                                 begin
-0060                                     write (#186'   ', dia:2, '    ');
-0061                                 end;	
-0062                             inc (dia);
-0063                         end;
-0064                     writeln (#186);
-0065                     if dia<=meses[mes] then
-0066                         begin
-0067                             writeln (#204, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #185)
-0068                         end	
-0069                     else
-0070                         begin
-0071                             writeln (#200, borde, #202, borde, #202, borde, #202, borde, #202, borde, #202, borde, #202, borde, #188);
-0072                         end; 
-0073                 end;
-0074             writeln ('Presione '#27' y '#26' para cambiar de mes.');
-0075             writeln ('Presione '#24' y '#25' para cambiar de a'#164'o.');
-0076             writeln ('Presione ESC para salir.');
-0077             repeat
-0078                 begin
-0079                     tecla := ord (readkey);
-0080                 end;
-0081             until (tecla=0) or (tecla=27);
-0082             if tecla = 0 then
-0083                 begin
-0084                     case ord (readkey) of
-0085                         72: inc (year);
-0086                         80: dec (year);
-0087                         77:
-0088                         if mes<11 then
-0089                             begin
-0090                                 inc (mes);
-0091                             end	
-0092                         else
-0093                             begin
-0094                                 inc (year);
-0095                                 mes := 0;
-0096                             end;
-0097                         75:
-0098                             if mes <> 0 then
-0099                                 begin
-0100                                     dec (mes);
-0101                                 end
-0102                             else
-0103                                 begin
-0104                                     dec (year);
-0105                                     mes := 11;
-0106                                 end;
-0107                end;
-0108           end;	
-0109         end;
-0110     until tecla = 27;
-0111     //fin del programa
-0112 end.
-Error 505 en línea 0024: La declaración de variable deben ubicarse después de declarar correctamente program y uses y antes del begin
-Error 506 en línea 0024: Identificador de la variable solo debe iniciar con una letra o guión bajo
+0024     for i:=0 to 11 do
+0025         begin
+0026             meses[i] := months[i];
+0027         end;
+0028     getdate (year, mes , day, dayofweek);
+0029     dec (mes);
+0030     repeat
+0031         begin
+0032             if (((year mod 4) = 0) and ((year mod 100) <> 0)) or ((year mod 400) = 0) then
+0033                 begin
+0034                     meses[1] := 29;
+0035                     modulo := year_bisiesto[mes];
+0036                 end
+0037             else
+0038                 begin
+0039                     meses[1] := 28;
+0040                     modulo := year_regular[mes];
+0041                 end;
+0042             dia := 1 - ((year - 1) mod 7 + ((year - 1) div 4 - (3 * ((year - 1) div 100 + 1)) div 4) mod 7 + modulo + 1) mod 7;
+0043             clrscr;
+0044             writeln ('          '#17, nombres[mes], #16'                       '#30, year, #31);
+0045             writeln (#201, borde, #203, borde, #203, borde, #203, borde, #203, borde, #203, borde, #203, borde, #187);
+0046             write   (#186' Domingo '#186'  Lunes  '#186' Martes  '#186'Mi'#130'rcoles'#186' Jueves  '#186' Viernes ');
+0047             writeln (#186' S'#160'bado  '#186);
+0048             writeln (#204, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #185);
+0049             while dia <= meses[mes] do
+0050                 begin
+0051                     for i:=0 to 6 do
+0052                         begin
+0053                             if (dia<1) or (dia>meses[mes]) then
+0054                                 begin
+0055                                     write (#186'         ')
+0056                                 end	
+0057                             else
+0058                                 begin
+0059                                     write (#186'   ', dia:2, '    ');
+0060                                 end;	
+0061                             inc (dia);
+0062                         end;
+0063                     writeln (#186);
+0064                     if dia<=meses[mes] then
+0065                         begin
+0066                             writeln (#204, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #185)
+0067                         end	
+0068                     else
+0069                         begin
+0070                             writeln (#200, borde, #202, borde, #202, borde, #202, borde, #202, borde, #202, borde, #202, borde, #188);
+0071                         end; 
+0072                 end;
+0073             writeln ('Presione '#27' y '#26' para cambiar de mes.');
+0074             writeln ('Presione '#24' y '#25' para cambiar de a'#164'o.');
+0075             writeln ('Presione ESC para salir.');
+0076             repeat
+0077                 begin
+0078                     tecla := ord (readkey);
+0079                 end;
+0080             until (tecla=0) or (tecla=27);
+0081             if tecla = 0 then
+0082                 begin
+0083                     case ord (readkey) of
+0084                         72: inc (year);
+0085                         80: dec (year);
+0086                         77:
+0087                         if mes<11 then
+0088                             begin
+0089                                 inc (mes);
+0090                             end	
+0091                         else
+0092                             begin
+0093                                 inc (year);
+0094                                 mes := 0;
+0095                             end;
+0096                         75:
+0097                             if mes <> 0 then
+0098                                 begin
+0099                                     dec (mes);
+0100                                 end
+0101                             else
+0102                                 begin
+0103                                     dec (year);
+0104                                     mes := 11;
+0105                                 end;
+0106                end;
+0107           end;	
+0108         end;
+0109     until tecla = 27;
+0110     //fin del programa
+0111 end.
+Error 511 en línea 0012: null: :
+Error 511 en línea 0013: null: :
+Error 511 en línea 0014: null: :
+Error 511 en línea 0015: null: :
+Error 511 en línea 0016: null: :
+Error 511 en línea 0017: null: :
+Error 511 en línea 0018: null: :
+Error 511 en línea 0019: null: :
+Error 511 en línea 0020: null: :
+Error 405 en línea 0003: Valor de constante inválido: #205#205#205#205#205#205#205#205#205
+Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
+Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
+Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
+Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
+Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
+Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
+Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
+Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
+Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
+Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
+Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
+Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
+Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
+Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
+Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
+Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
+Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
+Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
+Error 405 en línea 0004: Valor de constante inválido: (31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+Error 403 en línea 0005: Identificador de constante no válido: year_regular : array[0..11] of integer
+Error 403 en línea 0005: Identificador de constante no válido: year_regular : array[0..11] of integer
+Error 403 en línea 0005: Identificador de constante no válido: year_regular : array[0..11] of integer
+Error 403 en línea 0005: Identificador de constante no válido: year_regular : array[0..11] of integer
+Error 403 en línea 0005: Identificador de constante no válido: year_regular : array[0..11] of integer
+Error 403 en línea 0005: Identificador de constante no válido: year_regular : array[0..11] of integer
+Error 403 en línea 0005: Identificador de constante no válido: year_regular : array[0..11] of integer
+Error 403 en línea 0005: Identificador de constante no válido: year_regular : array[0..11] of integer
+Error 403 en línea 0005: Identificador de constante no válido: year_regular : array[0..11] of integer
+Error 403 en línea 0005: Identificador de constante no válido: year_regular : array[0..11] of integer
+Error 403 en línea 0005: Identificador de constante no válido: year_regular : array[0..11] of integer
+Error 403 en línea 0005: Identificador de constante no válido: year_regular : array[0..11] of integer
+Error 405 en línea 0005: Valor de constante inválido: ( 0,  3,  3,  6,  1,  4,  6,  2,  5,  0,  3,  5)
+Error 403 en línea 0006: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
+Error 403 en línea 0006: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
+Error 403 en línea 0006: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
+Error 403 en línea 0006: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
+Error 403 en línea 0006: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
+Error 403 en línea 0006: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
+Error 403 en línea 0006: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
+Error 403 en línea 0006: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
+Error 403 en línea 0006: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
+Error 403 en línea 0006: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
+Error 403 en línea 0006: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
+Error 403 en línea 0006: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
+Error 405 en línea 0006: Valor de constante inválido: ( 0,  3,  4,  0,  2,  5,  0,  3,  6,  1,  4,  6)
+Error 401 en línea 0007: La declaración de constante debe finalizar con punto y coma
+Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
+Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
+Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
+Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
+Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
+Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
+Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
+Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
+Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
+Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
+Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
+Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
+Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
+Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
+Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
+Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
+Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
+Error 405 en línea 0007: Valor de constante inválido: (
+Error 403 en línea 0005: Identificador de constante no válido: year_regular : array[0..11] of integer
+Error 403 en línea 0006: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
+Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
+Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
+Error 403 en línea 0003: Identificador de constante no válido: borde

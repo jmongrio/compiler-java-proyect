@@ -20,8 +20,15 @@ public class ReservedWordDictionary {
         "WHILE", "XOR", "WITH", "TYPE", "OF",
         "USES", "SET", "OBJECT", "TO"
     ));
+    
+    private static final Set<String> VARIABLE_TYPES = new HashSet<>(Arrays.asList(
+    "INTEGER", "STRING", "WORD"));
 
     public static boolean isReserved(String word) {
         return RESERVED_WORDS.contains(word.toUpperCase());
+    }
+    
+    public static boolean validVariableType(String word){
+        return VARIABLE_TYPES.contains(word.toUpperCase());
     }
 }

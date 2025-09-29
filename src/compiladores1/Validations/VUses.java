@@ -8,30 +8,26 @@ import java.util.List;
  *
  * @author jmong
  */
-public class Uses {
+public class VUses {
 
     private List<String> lines = new ArrayList<>();
     private final ErrorDictionary errorDict = new ErrorDictionary();
     private final List<String> errors = new ArrayList<>();
     private final String baseName;
 
-    public Uses(List<String> lines, String baseName) {
+    public VUses(List<String> lines, String baseName) {
         this.lines = lines;
         this.baseName = baseName;
     }
 
     public void validateUses() {
-        Program programValidation = new Program(lines, baseName);
+        VProgram programValidation = new VProgram(lines, baseName);
 
         int programLine = programValidation.getProgramLine();
 
         int lineNumber = 0;
         for (String line : lines) {
-//            if (lineNumber == (programLine + 1) && !line.contains("uses")) {
-//                addError(300, lineNumber, null);
-//            }
-
-            if (line.contains("uses") && !line.endsWith(";")) {
+            if (line.contains("uses") && !line.trim().endsWith(";")) {
                 addError(202, lineNumber, null);
             }
 

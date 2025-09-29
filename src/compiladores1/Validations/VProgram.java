@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  *
  * @author jmong
  */
-public class Program {
+public class VProgram {
 
     private List<String> lines = new ArrayList<>();
     private final ErrorDictionary errorDict = new ErrorDictionary();
@@ -18,7 +18,7 @@ public class Program {
     private int lineProgramExist = 0;
     private String baseName = "";
 
-    public Program(List<String> lines, String baseName) {
+    public VProgram(List<String> lines, String baseName) {
         this.lines = lines;
         this.baseName = baseName;
     }
@@ -55,7 +55,7 @@ public class Program {
                     return;
                 }
 
-                if (!line.endsWith(";")) {
+                if (!line.trim().endsWith(";")) {
                     addError(202, lineProgram, "La declaración 'program' debe finalizar con ';'");
                 }
 
