@@ -65,6 +65,8 @@ public class ErrorDictionary {
         compilerErrors.put(802, "Comentario inválido, debe empezar con // sin espacios");
         compilerErrors.put(803, "Comentarios entre { } deben cerrarse en la misma línea (no multilínea)");
         compilerErrors.put(804, "No se permiten comentarios después de un punto y coma en la misma línea");
+        compilerErrors.put(805, "Comentarios con / deben tener 2 / en la forma //");
+        compilerErrors.put(806, "No se permiten comentarios despues de end.");
     }
 
     public String getError(int code) {

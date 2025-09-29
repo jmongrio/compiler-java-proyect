@@ -37,8 +37,14 @@ public class ErrorFileManager {
             }
             
             if (errors.isEmpty()) {
-                bw.write("No se encontraron errores.");
+                bw.write("");
             } else {
+                bw.write("----------------------");
+                bw.newLine();
+                bw.write("|       Errores      |");
+                bw.newLine();
+                bw.write("----------------------");
+                bw.newLine();
                 for (String error : errors) {
                     bw.write(error);
                     bw.newLine();

@@ -110,82 +110,8 @@
 0109     until tecla = 27;
 0110     //fin del programa
 0111 end.
-Error 511 en línea 0012: null: :
-Error 511 en línea 0013: null: :
-Error 511 en línea 0014: null: :
-Error 511 en línea 0015: null: :
-Error 511 en línea 0016: null: :
-Error 511 en línea 0017: null: :
-Error 511 en línea 0018: null: :
-Error 511 en línea 0019: null: :
-Error 511 en línea 0020: null: :
-Error 405 en línea 0003: Valor de constante inválido: #205#205#205#205#205#205#205#205#205
-Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
-Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
-Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
-Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
-Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
-Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
-Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
-Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
-Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
-Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
-Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
-Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
-Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
-Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
-Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
-Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
-Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
-Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
-Error 405 en línea 0004: Valor de constante inválido: (31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
-Error 403 en línea 0005: Identificador de constante no válido: year_regular : array[0..11] of integer
-Error 403 en línea 0005: Identificador de constante no válido: year_regular : array[0..11] of integer
-Error 403 en línea 0005: Identificador de constante no válido: year_regular : array[0..11] of integer
-Error 403 en línea 0005: Identificador de constante no válido: year_regular : array[0..11] of integer
-Error 403 en línea 0005: Identificador de constante no válido: year_regular : array[0..11] of integer
-Error 403 en línea 0005: Identificador de constante no válido: year_regular : array[0..11] of integer
-Error 403 en línea 0005: Identificador de constante no válido: year_regular : array[0..11] of integer
-Error 403 en línea 0005: Identificador de constante no válido: year_regular : array[0..11] of integer
-Error 403 en línea 0005: Identificador de constante no válido: year_regular : array[0..11] of integer
-Error 403 en línea 0005: Identificador de constante no válido: year_regular : array[0..11] of integer
-Error 403 en línea 0005: Identificador de constante no válido: year_regular : array[0..11] of integer
-Error 403 en línea 0005: Identificador de constante no válido: year_regular : array[0..11] of integer
-Error 405 en línea 0005: Valor de constante inválido: ( 0,  3,  3,  6,  1,  4,  6,  2,  5,  0,  3,  5)
-Error 403 en línea 0006: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
-Error 403 en línea 0006: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
-Error 403 en línea 0006: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
-Error 403 en línea 0006: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
-Error 403 en línea 0006: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
-Error 403 en línea 0006: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
-Error 403 en línea 0006: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
-Error 403 en línea 0006: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
-Error 403 en línea 0006: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
-Error 403 en línea 0006: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
-Error 403 en línea 0006: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
-Error 403 en línea 0006: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
-Error 405 en línea 0006: Valor de constante inválido: ( 0,  3,  4,  0,  2,  5,  0,  3,  6,  1,  4,  6)
-Error 401 en línea 0007: La declaración de constante debe finalizar con punto y coma
-Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
-Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
-Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
-Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
-Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
-Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
-Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
-Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
-Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
-Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
-Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
-Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
-Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
-Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
-Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
-Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
-Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
-Error 405 en línea 0007: Valor de constante inválido: (
-Error 403 en línea 0005: Identificador de constante no válido: year_regular : array[0..11] of integer
-Error 403 en línea 0006: Identificador de constante no válido: year_bisiesto : array[0..11] of integer
-Error 403 en línea 0007: Identificador de constante no válido: nombres      : array[0..11] of string
-Error 403 en línea 0004: Identificador de constante no válido: months       : array[0..11] of integer
-Error 403 en línea 0003: Identificador de constante no válido: borde
+0112 {coment}
+----------------------
+|       Errores      |
+----------------------
+Error 806 en línea 0112: No se permiten comentarios despues de end.
