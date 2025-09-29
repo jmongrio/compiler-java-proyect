@@ -53,7 +53,7 @@ begin
                         begin
                             if (dia<1) or (dia>meses[mes]) then
                                 begin
-                                    write (#186'         ')
+                                    write (#186'         ');
                                 end	
                             else
                                 begin
@@ -64,7 +64,7 @@ begin
                     writeln (#186);
                     if dia<=meses[mes] then
                         begin
-                            writeln (#204, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #185)
+                            writeln (#204, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #185);
                         end	
                     else
                         begin

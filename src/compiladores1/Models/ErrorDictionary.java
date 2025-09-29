@@ -59,6 +59,10 @@ public class ErrorDictionary {
         compilerErrors.put(701, "La instrucción Write/WriteLn debe tener contenido dentro de paréntesis");
         compilerErrors.put(702, "Los paréntesis de Write/WriteLn no pueden estar vacíos");
         compilerErrors.put(703, "Contenido inválido en Write/WriteLn");
+        compilerErrors.put(704, "La sentencia Write/WriteLn debe tener los simbolos paréntesis ( y )");
+        compilerErrors.put(705, "La sentencia Write/WriteLn no debe estar antes de la sentencia program");
+        compilerErrors.put(706, "La sentencia Write/WriteLn no debe estar despues de la sentencia end.");
+        compilerErrors.put(707, "La sentencia Write/WriteLn debe estar entre la sentencia begin y la sentencia end.");
 
         // validateComments
         compilerErrors.put(800, "No se permiten comentarios antes de program");
