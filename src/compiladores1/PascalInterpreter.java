@@ -49,14 +49,14 @@ public class PascalInterpreter {
         errors.addAll(useValidation.getErrors());
 
         // Validation variables
-        VVariables identifierValidation = new VVariables(lines);
-        identifierValidation.validateIdentifier();
-        errors.addAll(identifierValidation.getErrors());
+//        VVariables identifierValidation = new VVariables(lines);
+//        identifierValidation.validateIdentifier();
+//        errors.addAll(identifierValidation.getErrors());
         
         // Validation constants
-        VConstants constantsValidation = new VConstants(lines);
-        constantsValidation.validateConstants();
-        errors.addAll(constantsValidation.getErrors());
+//        VConstants constantsValidation = new VConstants(lines);
+//        constantsValidation.validateConstants();
+//        errors.addAll(constantsValidation.getErrors());
         
         // Validation Begin and End
         VBeginAndEnd beginAndEndValidation = new VBeginAndEnd(lines);

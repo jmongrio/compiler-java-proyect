@@ -24,7 +24,6 @@ public class VComments {
         Pattern pattern = Pattern.compile("//.*|\\{*}]\\}");
 
         boolean existProgram = false;
-        boolean existBegin = false;
         boolean existEnd = false;
 
         int lineNumber = 0;
@@ -46,7 +45,6 @@ public class VComments {
                 String token = tokens[i];
 
                 existProgram = checkProgram(token, existProgram);
-                existBegin = checkBegin(token, existBegin);
                 existEnd = checkEnd(token, existEnd);
 
                 if (token.equals("/")) {
@@ -102,10 +100,6 @@ public class VComments {
 
     private boolean checkProgram(String token, boolean existProgram) {
         return (!existProgram && token.equals("program")) || existProgram;
-    }
-
-    private boolean checkBegin(String token, boolean existBegin) {
-        return (token.equals("begin")) || existBegin;
     }
     
     private boolean checkEnd(String token, boolean existEnd) {

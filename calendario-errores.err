@@ -110,8 +110,3 @@
 0109     until tecla = 27;
 0110     //fin del programa
 0111 end.
-0112 {coment}
-----------------------
-|       Errores      |
-----------------------
-Error 806 en línea 0112: No se permiten comentarios despues de end.

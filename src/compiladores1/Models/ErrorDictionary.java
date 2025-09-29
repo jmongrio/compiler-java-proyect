@@ -52,6 +52,7 @@ public class ErrorDictionary {
         compilerErrors.put(604, "No puede haber líneas ni comentarios después de end");
         compilerErrors.put(605, "No se encontró la palabra begin en el archivo");
         compilerErrors.put(606, "No se encontró 'end.' al final del archivo");
+        compilerErrors.put(607, "No estan todos los begin o los end cerrados correctamente");
 
         // validateWrite
         compilerErrors.put(700, "La instrucción Write/WriteLn debe finalizar con punto y coma");
