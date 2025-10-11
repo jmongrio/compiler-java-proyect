@@ -1,6 +1,7 @@
 package compiladores1.Validations;
 
 import compiladores1.Models.ErrorDictionary;
+import compiladores1.Models.ReservedWordDictionary;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -17,6 +18,8 @@ public class VProgram {
     private final List<String> errors = new ArrayList<>();
     private int lineProgramExist = 0;
     private String baseName = "";
+    private String regex = "(?=[();:,{}])|(?<=[();:,{}])|\\s+";
+    private List<String> lineToken = new ArrayList<>();
 
     public VProgram(List<String> lines, String baseName) {
         this.lines = lines;
@@ -34,6 +37,29 @@ public class VProgram {
 
         for (String line : lines) {
             String trimmed = line.trim();
+            
+            String[] trimmedTest = line.trim().split(regex);
+            
+            List<String> lexico = new ArrayList<>();
+            for(String token : trimmedTest){                  
+                boolean isReserved = ReservedWordDictionary.isReserved(token.toUpperCase());
+                
+                if(isReserved){
+                    lexico.add("RESERVED_WORD " + token);
+                    continue;
+                }
+                
+                if(token.equals(";")){
+                    lexico.add("SEMI_COLON");
+                    continue;
+                }
+                
+                if(!isReserved){
+                    lexico.add("IDENTIFIER, " + token);
+                    continue;
+                }
+            }
+            System.out.println(lexico);
             
             if(existProgram == false && trimmed.contains("//")){
                 addError(205, lineProgram, null);
@@ -106,4 +132,6 @@ public class VProgram {
         
         return identifier;
     }
+    
+    
 }

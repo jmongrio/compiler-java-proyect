@@ -1,4 +1,3 @@
-const borde = #205;
 program calendario;
 uses crt, dos;
 

@@ -43,35 +43,35 @@ public class PascalInterpreter {
         programValidation.validateProgram();
         errors.addAll(programValidation.getErrors());
 
-        // Validation use
-        VUses useValidation = new VUses(lines, baseName);
-        useValidation.validateUses();
-        errors.addAll(useValidation.getErrors());
-
-        // Validation variables
-        VVariables identifierValidation = new VVariables(lines);
-        identifierValidation.validateIdentifier();
-        errors.addAll(identifierValidation.getErrors());
-        
-        // Validation constants
-        VConstants constantsValidation = new VConstants(lines);
-        constantsValidation.validateConstants();
-        errors.addAll(constantsValidation.getErrors());
-        
-        // Validation Begin and End
-        VBeginAndEnd beginAndEndValidation = new VBeginAndEnd(lines);
-        beginAndEndValidation.validateBeginAndEnd();
-        errors.addAll(beginAndEndValidation.getErrors());
-        
-        // Validation Write
-        VWrite writeValidation = new VWrite(lines);
-        writeValidation.validateWrite();
-        errors.addAll(writeValidation.getErrors());
-        
-        // Validation Comments
-        VComments commentsValidation = new VComments(lines);
-        commentsValidation.validateComments();
-        errors.addAll(commentsValidation.getErrors());
+//        // Validation use
+//        VUses useValidation = new VUses(lines, baseName);
+//        useValidation.validateUses();
+//        errors.addAll(useValidation.getErrors());
+//
+//        // Validation variables
+//        VVariables identifierValidation = new VVariables(lines);
+//        identifierValidation.validateIdentifier();
+//        errors.addAll(identifierValidation.getErrors());
+//        
+//        // Validation constants
+//        VConstants constantsValidation = new VConstants(lines);
+//        constantsValidation.validateConstants();
+//        errors.addAll(constantsValidation.getErrors());
+//        
+//        // Validation Begin and End
+//        VBeginAndEnd beginAndEndValidation = new VBeginAndEnd(lines);
+//        beginAndEndValidation.validateBeginAndEnd();
+//        errors.addAll(beginAndEndValidation.getErrors());
+//        
+//        // Validation Write
+//        VWrite writeValidation = new VWrite(lines);
+//        writeValidation.validateWrite();
+//        errors.addAll(writeValidation.getErrors());
+//        
+//        // Validation Comments
+//        VComments commentsValidation = new VComments(lines);
+//        commentsValidation.validateComments();
+//        errors.addAll(commentsValidation.getErrors());
 
         ErrorFileManager errorFile = new ErrorFileManager(fileName, errors, lines);
         errorFile.writeErrors();
