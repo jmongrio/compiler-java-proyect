@@ -17,6 +17,7 @@ public class ValidateProgramBlock {
     private int position = 0;
     private final List<String> errors = new ArrayList<>();
     private final ErrorDictionary errorDict = new ErrorDictionary();
+    private boolean programIsValid = false;
 
     ValidateProgramBlock(List<Token> tokens, String fileName) {
         this.tokens = tokens;
@@ -37,8 +38,8 @@ public class ValidateProgramBlock {
                 advance();
                 continue;
             }
-            
-            if(foundProgram && tokenToCheck.getType() == TokenType.PROGRAM){
+
+            if (foundProgram && tokenToCheck.getType() == TokenType.PROGRAM) {
                 addError(204, tokenToCheck.getLine(), null);
                 advance();
                 continue;
@@ -55,8 +56,8 @@ public class ValidateProgramBlock {
             if (tokenToCheck.getType() != TokenType.IDENTIFIER) {
                 addError(201, tokenToCheck.getLine(), null);
             }
-            
-            if(!tokenToCheck.getLexeme().equals(fileName)){
+
+            if (!tokenToCheck.getLexeme().equals(fileName)) {
                 addError(203, tokenToCheck.getLine(), null);
             }
 
@@ -66,6 +67,12 @@ public class ValidateProgramBlock {
             if (tokenToCheck.getType() != TokenType.SYMBOL) {
                 addError(202, tokenToCheck.getLine(), null);
             }
+
+            if (!errors.isEmpty()) {
+                continue;
+            }
+
+            programIsValid = true;
         }
 
         if (!foundProgram) {
@@ -101,5 +108,9 @@ public class ValidateProgramBlock {
 
     public List<String> getErrors() {
         return errors;
+    }
+
+    public boolean getProgramIsValid() {
+        return programIsValid;
     }
 }

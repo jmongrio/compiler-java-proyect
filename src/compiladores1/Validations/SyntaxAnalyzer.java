@@ -14,15 +14,21 @@ public class SyntaxAnalyzer {
     private final List<Token> tokens;
     private final String fileName;
     private final List<String> errors = new ArrayList<>();
+    private boolean programIsValid = false;
 
     public SyntaxAnalyzer(List<Token> tokens, String fileName) {
         this.tokens = tokens;
         this.fileName = fileName;
     }
     
-    public void parseProgram(){
+    public void analize(){
+        parseProgram(tokens, fileName);
+    }
+    
+    private void parseProgram(List<Token> tokens, String fileName){
         ValidateProgramBlock validateProgram = new ValidateProgramBlock(tokens, fileName);
         validateProgram.parseProgram();
+        programIsValid = validateProgram.getProgramIsValid();
         
         if(!validateProgram.getErrors().isEmpty()){
             errors.addAll(validateProgram.getErrors());
