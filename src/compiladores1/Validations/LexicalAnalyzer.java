@@ -3,13 +3,11 @@ package compiladores1.Validations;
 import compiladores1.Models.ReservedWordDictionary;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import compiladores1.Models.Token;
 import compiladores1.Models.TokenType;
 
-/**
- *
- * @author jmong
- */
 public class LexicalAnalyzer {
 
     private final List<String> lines;
@@ -22,6 +20,7 @@ public class LexicalAnalyzer {
 
     public void analyze() {
         int lineNumber = 0;
+        boolean afterProgramUses = false;
 
         for (String line : lines) {
             if (line.trim().isEmpty()) {
@@ -30,56 +29,69 @@ public class LexicalAnalyzer {
             }
 
             line = removeComments(line);
+            if (line.trim().isEmpty()) {
+                lineNumber++;
+                continue;
+            }
 
-            String[] parts = tokenize(line);
-
-            for (String part : parts) {
-                part = part.trim();
-                if (part.isEmpty()) {
-                    continue;
+            if (!afterProgramUses) {
+                if (line.toLowerCase().contains("program") || line.toLowerCase().contains("uses")) {
+                    afterProgramUses = true;
                 }
-                classifyToken(part, lineNumber);
+            }
+
+            Pattern pattern = Pattern.compile(
+                "('([^']|'')*')" +
+                "|(#[0-9]+)+" +
+                "|([a-zA-Z_][a-zA-Z0-9_]*)" +
+                "|([0-9]+)" +
+                "|(<=|>=|<>|:=|\\.{2})" +
+                "|([;,.()\\[\\]{}=:+\\-/*<>])"
+            );
+
+            Matcher matcher = pattern.matcher(line);
+            while (matcher.find()) {
+                String part = matcher.group();
+                classifyToken(part, lineNumber, afterProgramUses);
             }
 
             lineNumber++;
         }
     }
 
-    // Splitter symbols
-    private String[] tokenize(String line) {
-        return line.trim().split("(?=[;,.()\\[\\]{}=:+-/*])|(?<=[;,.()\\[\\]{}=:+-/*])|\\s+");
-    }
-
-    // Skip valid comments
     private String removeComments(String line) {
         int index = line.indexOf("//");
         if (index != -1) {
-            return line.substring(0, index);
+            line = line.substring(0, index);
         }
-
-        if (line.contains("{") && line.contains("}")) {
-            return line.replaceAll("\\{.*?\\}", "");
-        }
-
-        return line;
+        return line.replaceAll("\\{.*?\\}", "");
     }
 
-    private void classifyToken(String token, int lineNumber) {
+    private void classifyToken(String token, int lineNumber, boolean afterProgramUses) {
         String lower = token.toLowerCase();
 
         if (ReservedWordDictionary.isReserved(lower)) {
             TokenType type = TokenType.valueOf(lower.toUpperCase());
             tokens.add(new Token(token, type, lineNumber));
+
         } else if (token.matches("^[a-zA-Z_][a-zA-Z0-9_]*$")) {
+            if (token.equalsIgnoreCase("const") && !afterProgramUses) {
+                errors.add(String.format("Constante declarada fuera de la sección correcta en línea %d", lineNumber));
+            }
             tokens.add(new Token(token, TokenType.IDENTIFIER, lineNumber));
+
         } else if (token.matches("^(#[0-9]+)+$")) {
             tokens.add(new Token(token, TokenType.CHAR_CODE, lineNumber));
+
+        } else if (token.matches("^'([^']|'')*'$")) {
+            tokens.add(new Token(token, TokenType.STRING, lineNumber));
+
         } else if (token.matches("^[0-9]+$")) {
             tokens.add(new Token(token, TokenType.NUMBER, lineNumber));
-        } else if (token.matches("^'.*'$")) {
-            tokens.add(new Token(token, TokenType.STRING, lineNumber));
-        } else if (token.matches("^[;,.()\\[\\]{}=:+-/*]$")) {
+
+        } else if (token.matches("^(<=|>=|<>|:=|\\.{2}|[;,.()\\[\\]{}=:+\\-/*<>])$")) {
             tokens.add(new Token(token, TokenType.SYMBOL, lineNumber));
+
         } else {
             errors.add(String.format("Token desconocido '%s' en línea %d", token, lineNumber));
             tokens.add(new Token(token, TokenType.UNKNOWN, lineNumber));
