@@ -25,6 +25,7 @@ public class ErrorDictionary {
         compilerErrors.put(301, "La sentencia uses debe finalizar con punto y coma");
         compilerErrors.put(302, "La sentencia uses debe incluir al menos un comando");
         compilerErrors.put(303, "No se encontró la sentencia uses después de program");
+        compilerErrors.put(304, "Error en la sentencia program, no se puede validar correctamente la sentencia USES");
 
         // validateConst
         compilerErrors.put(400, "Constantes declaradas después de begin no son válidas");

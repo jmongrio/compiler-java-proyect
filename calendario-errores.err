@@ -1,4 +1,4 @@
-0000 program calendario
+0000 program calendario;
 0001 uses crt, dos;
 0002 
 0003 const borde = #205#205#205#205#205#205#205#205#205;
@@ -15,7 +15,3 @@
 0014     getdate (year, mes , day, dayofweek);
 0015     dec (mes);
 0016 end.
-----------------------
-|       Errores      |
-----------------------
-Error 202 en línea 0001: La declaración program no finaliza con punto y coma

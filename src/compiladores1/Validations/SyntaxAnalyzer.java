@@ -23,6 +23,7 @@ public class SyntaxAnalyzer {
     
     public void analize(){
         parseProgram(tokens, fileName);
+        parseUses(tokens, programIsValid);
     }
     
     private void parseProgram(List<Token> tokens, String fileName){
@@ -32,6 +33,15 @@ public class SyntaxAnalyzer {
         
         if(!validateProgram.getErrors().isEmpty()){
             errors.addAll(validateProgram.getErrors());
+        }
+    }
+    
+    private void parseUses(List<Token> tokens, boolean programValid){
+        ValidateUsesBlock validateUses = new ValidateUsesBlock(tokens, programValid);
+        validateUses.parseUses();
+        
+        if(!validateUses.getErrors().isEmpty()){
+            errors.addAll(validateUses.getErrors());
         }
     }
 

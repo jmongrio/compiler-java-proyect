@@ -52,7 +52,7 @@ public class PascalInterpreter {
 
         if (lexer.getErrors().isEmpty()) {
             SyntaxAnalyzer parser = new SyntaxAnalyzer(lexer.getTokens(), baseName);
-            parser.parseProgram();
+            parser.analize();
             
             if(!parser.getErrors().isEmpty()){
                 errors.addAll(parser.getErrors());
