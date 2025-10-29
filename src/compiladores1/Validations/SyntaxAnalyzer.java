@@ -24,6 +24,7 @@ public class SyntaxAnalyzer {
     public void analize(){
         parseProgram(tokens, fileName);
         parseUses(tokens, programIsValid);
+        parseConst(tokens);
     }
     
     private void parseProgram(List<Token> tokens, String fileName){
@@ -42,6 +43,15 @@ public class SyntaxAnalyzer {
         
         if(!validateUses.getErrors().isEmpty()){
             errors.addAll(validateUses.getErrors());
+        }
+    }
+    
+    private void parseConst(List<Token> tokens){
+        ValidateConstBlock validateConst = new ValidateConstBlock(tokens);
+        validateConst.parseConstBlock();
+        
+        if(!validateConst.getErrors().isEmpty()){
+            errors.addAll(validateConst.getErrors());
         }
     }
 
