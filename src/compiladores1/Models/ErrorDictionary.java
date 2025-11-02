@@ -18,13 +18,14 @@ public class ErrorDictionary {
         compilerErrors.put(202, "La declaración program no finaliza con punto y coma");
         compilerErrors.put(203, "El nombre del programa no coincide con el nombre del archivo");
         compilerErrors.put(204, "La palabra program no debe aparecer más de una vez");
-        compilerErrors.put(205, "No deben haber comentarios antes de la palabra inicial program");
+        compilerErrors.put(205, "No deben haber comentarios antes de la palabra inicial program"); // falta implementar
 
         // validateUses
         compilerErrors.put(300, "No debe haber líneas en blanco o comentarios entre program y uses");
         compilerErrors.put(301, "La sentencia uses debe finalizar con punto y coma");
         compilerErrors.put(302, "La sentencia uses debe incluir al menos un comando");
         compilerErrors.put(303, "No se encontró la sentencia uses después de program");
+        compilerErrors.put(304, "Error en la sentencia program, no se puede validar correctamente la sentencia USES");
 
         // validateConst
         compilerErrors.put(400, "Constantes declaradas después de begin no son válidas");

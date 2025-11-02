@@ -2,13 +2,10 @@ package compiladores1;
 
 import compiladores1.Models.ErrorDictionary;
 import compiladores1.Models.ResponseModel;
-import compiladores1.Validations.VBeginAndEnd;
-import compiladores1.Validations.VComments;
-import compiladores1.Validations.VConstants;
-import compiladores1.Validations.VVariables;
-import compiladores1.Validations.VProgram;
-import compiladores1.Validations.VUses;
-import compiladores1.Validations.VWrite;
+import compiladores1.Models.Token;
+import compiladores1.Validations.CommentValidator;
+import compiladores1.Validations.LexicalAnalyzer;
+import compiladores1.Validations.SyntaxAnalyzer;
 import java.util.*;
 
 public class PascalInterpreter {
@@ -38,40 +35,42 @@ public class PascalInterpreter {
             baseName = baseName.substring(0, baseName.lastIndexOf("."));
         }
 
-        // Validation program
-        VProgram programValidation = new VProgram(lines, baseName);
-        programValidation.validateProgram();
-        errors.addAll(programValidation.getErrors());
+        CommentValidator validator = new CommentValidator(lines);
+        validator.validate();
 
-//        // Validation use
-//        VUses useValidation = new VUses(lines, baseName);
-//        useValidation.validateUses();
-//        errors.addAll(useValidation.getErrors());
-//
-//        // Validation variables
-//        VVariables identifierValidation = new VVariables(lines);
-//        identifierValidation.validateIdentifier();
-//        errors.addAll(identifierValidation.getErrors());
+        LexicalAnalyzer lexer = new LexicalAnalyzer(lines);
+        lexer.analyze();
+        if(!lexer.getErrors().isEmpty()){
+            errors.addAll(lexer.getErrors());
+        }
+        
+        List<Token> tokens = lexer.getTokens();
+        for(Token token : tokens){
+            System.out.println(token);
+        }
+
+        if (lexer.getErrors().isEmpty()) {
+            SyntaxAnalyzer parser = new SyntaxAnalyzer(lexer.getTokens(), baseName);
+            parser.analize();
+            
+            if(!parser.getErrors().isEmpty()){
+                errors.addAll(parser.getErrors());
+            }
+        } else {
+            lexer.getErrors().forEach(System.out::println);
+        }        
+
+//        SemanticAnalyzer semantic = new SemanticAnalyzer(lexer.getTokens());
+//        semantic.analyze();
 //        
-//        // Validation constants
-//        VConstants constantsValidation = new VConstants(lines);
-//        constantsValidation.validateConstants();
-//        errors.addAll(constantsValidation.getErrors());
-//        
-//        // Validation Begin and End
-//        VBeginAndEnd beginAndEndValidation = new VBeginAndEnd(lines);
-//        beginAndEndValidation.validateBeginAndEnd();
-//        errors.addAll(beginAndEndValidation.getErrors());
-//        
-//        // Validation Write
-//        VWrite writeValidation = new VWrite(lines);
-//        writeValidation.validateWrite();
-//        errors.addAll(writeValidation.getErrors());
-//        
-//        // Validation Comments
-//        VComments commentsValidation = new VComments(lines);
-//        commentsValidation.validateComments();
-//        errors.addAll(commentsValidation.getErrors());
+//        if(!semantic.getErrors().isEmpty()){
+//            errors.addAll(semantic.getErrors());
+//        }
+
+//        System.out.println("Símbolos encontrados:");
+//        semantic.getSymbolTable().getAll().forEach((k, v)
+//                -> System.out.println(v.getName() + " : " + v.getType() + (v.isConstant() ? " (const)" : ""))
+//        );
 
         ErrorFileManager errorFile = new ErrorFileManager(fileName, errors, lines);
         errorFile.writeErrors();
