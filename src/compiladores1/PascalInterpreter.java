@@ -5,7 +5,6 @@ import compiladores1.Models.ResponseModel;
 import compiladores1.Models.Token;
 import compiladores1.Validations.CommentValidator;
 import compiladores1.Validations.LexicalAnalyzer;
-import compiladores1.Validations.SemanticAnalyzer;
 import compiladores1.Validations.SyntaxAnalyzer;
 import java.util.*;
 
@@ -20,7 +19,7 @@ public class PascalInterpreter {
         this.fileName = fileName;
     }
 
-    public void processFile() throws Exception {
+    public void processFile() {
         FileManager fileManager = new FileManager(fileName);
         ResponseModel<List<String>> fileResponse = fileManager.readFile();
         if (!fileResponse.isIsSuccess()) {

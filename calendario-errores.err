@@ -4,7 +4,7 @@
 0003 const borde = #205#205#205#205#205#205#205#205#205;
 0004 const months       : array[0..11] of integer = (31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
 0005 const year_regular : array[0..11] of integer = ( 0,  3,  3,  6,  1,  4,  6,  2,  5,  0,  3,  5);
-0006 
+0006 const year_bisiesto : array[0..11] of integer = ( 0,  3,  4,  0,  2,  5,  0,  3,  6,  1,  4,  6);
 0007 
 0008 var meses : array[0..11] of integer;
 0009 var tecla : integer;
@@ -17,97 +17,92 @@
 0016 var dayofweek : word;
 0017 
 0018 begin
-0019 const year_bisiesto : array[0..11] of integer = ( 0,  3,  4,  0,  2,  5,  0,  3,  6,  1,  4,  6);
-0020 {inicio del programa}
-0021     for i:=0 to 11 do
-0022         begin
-0023             meses[i] := months[i];
-0024         end;
-0025     getdate (year, mes , day, dayofweek);
-0026     dec (mes);
-0027     repeat
-0028         begin
-0029             if (((year mod 4) = 0) and ((year mod 100) <> 0)) or ((year mod 400) = 0) then
-0030                 begin
-0031                     meses[1] := 29;
-0032                     modulo := year_bisiesto[mes];
-0033                 end
-0034             else
-0035                 begin
-0036                     meses[1] := 28;
-0037                     modulo := year_regular[mes];
-0038                 end;
-0039             dia := 1 - ((year - 1) mod 7 + ((year - 1) div 4 - (3 * ((year - 1) div 100 + 1)) div 4) mod 7 + modulo + 1) mod 7;
-0040             clrscr;
-0041             writeln ('          '#17, nombres[mes], #16'                       '#30, year, #31);
-0042             writeln (#201, borde, #203, borde, #203, borde, #203, borde, #203, borde, #203, borde, #203, borde, #187);
-0043             write   (#186' Domingo '#186'  Lunes  '#186' Martes  '#186'Mi'#130'rcoles'#186' Jueves  '#186' Viernes ');
-0044             writeln (#186' S'#160'bado  '#186);
-0045             writeln (#204, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #185);
-0046             while dia <= meses[mes] do
-0047                 begin
-0048                     for i:=0 to 6 do
-0049                         begin
-0050                             if (dia<1) or (dia>meses[mes]) then
-0051                                 begin
-0052                                     write (#186'         ');
-0053                                 end	
-0054                             else
-0055                                 begin
-0056                                     write (#186'   ', dia:2, '    ');
-0057                                 end;	
-0058                             inc (dia);
-0059                         end;
-0060                     writeln (#186);
-0061                     if dia<=meses[mes] then
-0062                         begin
-0063                             writeln (#204, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #185);
-0064                         end	
-0065                     else
-0066                         begin
-0067                             writeln (#200, borde, #202, borde, #202, borde, #202, borde, #202, borde, #202, borde, #202, borde, #188);
-0068                         end; 
-0069                 end;
-0070             writeln ('Presione '#27' y '#26' para cambiar de mes.');
-0071             writeln ('Presione '#24' y '#25' para cambiar de a'#164'o.');
-0072             writeln ('Presione ESC para salir.');
-0073             repeat
-0074                 begin
-0075                     tecla := ord (readkey);
-0076                 end;
-0077             until (tecla=0) or (tecla=27);
-0078             if tecla = 0 then
-0079                 begin
-0080                     case ord (readkey) of
-0081                         72: inc (year);
-0082                         80: dec (year);
-0083                         77:
-0084                         if mes<11 then
-0085                             begin
-0086                                 inc (mes);
-0087                             end	
-0088                         else
-0089                             begin
-0090                                 inc (year);
-0091                                 mes := 0;
-0092                             end;
-0093                         75:
-0094                             if mes <> 0 then
-0095                                 begin
-0096                                     dec (mes);
-0097                                 end
-0098                             else
-0099                                 begin
-0100                                     dec (year);
-0101                                     mes := 11;
-0102                                 end;
-0103                end;
-0104           end;	
-0105         end;
-0106     until tecla = 27;
-0107     //fin del programa
-0108 end.
-----------------------
-|       Errores      |
-----------------------
-Error 400 en línea 0019: Constantes declaradas después de begin no son válidas: Declaración encontrada después de BEGIN
+0019 {inicio del programa}
+0020     for i:=0 to 11 do
+0021         begin
+0022             meses[i] := months[i];
+0023         end;
+0024     getdate (year, mes , day, dayofweek);
+0025     dec (mes);
+0026     repeat
+0027         begin
+0028             if (((year mod 4) = 0) and ((year mod 100) <> 0)) or ((year mod 400) = 0) then
+0029                 begin
+0030                     meses[1] := 29;
+0031                     modulo := year_bisiesto[mes];
+0032                 end
+0033             else
+0034                 begin
+0035                     meses[1] := 28;
+0036                     modulo := year_regular[mes];
+0037                 end;
+0038             dia := 1 - ((year - 1) mod 7 + ((year - 1) div 4 - (3 * ((year - 1) div 100 + 1)) div 4) mod 7 + modulo + 1) mod 7;
+0039             clrscr;
+0040             writeln ('          '#17, nombres[mes], #16'                       '#30, year, #31);
+0041             writeln #201, borde, #203, borde, #203, borde, #203, borde, #203, borde, #203, borde, #203, borde, #187);
+0042             write   (#186' Domingo '#186'  Lunes  '#186' Martes  '#186'Mi'#130'rcoles'#186' Jueves  '#186' Viernes ');
+0043             writeln (#186' S'#160'bado  '#186);
+0044             writeln (#204, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #185);
+0045             while dia <= meses[mes] do
+0046                 begin
+0047                     for i:=0 to 6 do
+0048                         begin
+0049                             if (dia<1) or (dia>meses[mes]) then
+0050                                 begin
+0051                                     write (#186'         ');
+0052                                 end	
+0053                             else
+0054                                 begin
+0055                                     write (#186'   ', dia:2, '    ');
+0056                                 end;	
+0057                             inc (dia);
+0058                         end;
+0059                     writeln (#186);
+0060                     if dia<=meses[mes] then
+0061                         begin
+0062                             writeln (#204, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #185);
+0063                         end	
+0064                     else
+0065                         begin
+0066                             writeln (#200, borde, #202, borde, #202, borde, #202, borde, #202, borde, #202, borde, #202, borde, #188);
+0067                         end; 
+0068                 end;
+0069             writeln ('Presione '#27' y '#26' para cambiar de mes.');
+0070             writeln ('Presione '#24' y '#25' para cambiar de a'#164'o.');
+0071             writeln ('Presione ESC para salir.');
+0072             repeat
+0073                 begin
+0074                     tecla := ord (readkey);
+0075                 end;
+0076             until (tecla=0) or (tecla=27);
+0077             if tecla = 0 then
+0078                 begin
+0079                     case ord (readkey) of
+0080                         72: inc (year);
+0081                         80: dec (year);
+0082                         77:
+0083                         if mes<11 then
+0084                             begin
+0085                                 inc (mes);
+0086                             end	
+0087                         else
+0088                             begin
+0089                                 inc (year);
+0090                                 mes := 0;
+0091                             end;
+0092                         75:
+0093                             if mes <> 0 then
+0094                                 begin
+0095                                     dec (mes);
+0096                                 end
+0097                             else
+0098                                 begin
+0099                                     dec (year);
+0100                                     mes := 11;
+0101                                 end;
+0102                end;
+0103           end;	
+0104         end;
+0105     until tecla = 27;
+0106     //fin del programa
+0107 end.

@@ -28,11 +28,11 @@ public class LexicalAnalyzer {
                 continue;
             }
 
-            line = removeComments(line);
-            if (line.trim().isEmpty()) {
-                lineNumber++;
-                continue;
-            }
+//            line = removeComments(line);
+//            if (line.trim().isEmpty()) {
+//                lineNumber++;
+//                continue;
+//            }
 
             if (!afterProgramUses) {
                 if (line.toLowerCase().contains("program") || line.toLowerCase().contains("uses")) {
@@ -41,12 +41,12 @@ public class LexicalAnalyzer {
             }
 
             Pattern pattern = Pattern.compile(
-                "('([^']|'')*')" +
-                "|(#[0-9]+)+" +
-                "|([a-zA-Z_][a-zA-Z0-9_]*)" +
-                "|([0-9]+)" +
-                "|(<=|>=|<>|:=|\\.{2})" +
-                "|([;,.()\\[\\]{}=:+\\-/*<>])"
+                    "('([^']|'')*')"
+                    + "|(#[0-9]+)+"
+                    + "|([a-zA-Z_][a-zA-Z0-9_]*)"
+                    + "|([0-9]+)"
+                    + "|(<=|>=|<>|:=|\\.{2})"
+                    + "|([;,.()\\[\\]{}=:+\\-/*<>])"
             );
 
             Matcher matcher = pattern.matcher(line);
