@@ -39,7 +39,7 @@
 0038             dia := 1 - ((year - 1) mod 7 + ((year - 1) div 4 - (3 * ((year - 1) div 100 + 1)) div 4) mod 7 + modulo + 1) mod 7;
 0039             clrscr;
 0040             writeln ('          '#17, nombres[mes], #16'                       '#30, year, #31);
-0041             writeln #201, borde, #203, borde, #203, borde, #203, borde, #203, borde, #203, borde, #203, borde, #187);
+0041             writeln (#201, borde, #203, borde, #203, borde, #203, borde, #203, borde, #203, borde, #203, borde, #187);
 0042             write   (#186' Domingo '#186'  Lunes  '#186' Martes  '#186'Mi'#130'rcoles'#186' Jueves  '#186' Viernes ');
 0043             writeln (#186' S'#160'bado  '#186);
 0044             writeln (#204, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #206, borde, #185);
