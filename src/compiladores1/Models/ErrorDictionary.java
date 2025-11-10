@@ -85,11 +85,33 @@ public class ErrorDictionary {
         compilerErrors.put(906, "Falta el valor final en la declaración 'for'");
         compilerErrors.put(907, "Falta la palabra reservada 'do' después del valor final");
         compilerErrors.put(908, "La palabra 'begin' debe aparecer en la siguiente línea con 4 espacios de tabulación");
-        compilerErrors.put(909, "La sentencia dentro del for debe existir, empezar en la línea siguiente, llevar 4 espacios de tabulación y terminar con ';'");
+        compilerErrors.put(909,
+                "La sentencia dentro del for debe existir, empezar en la línea siguiente, llevar 4 espacios de tabulación y terminar con ';'");
         compilerErrors.put(910, "Falta 'end;' que cierre el for o 'end' no termina con punto y coma");
         compilerErrors.put(911, "La sentencia 'for' debe estar en una sola línea");
         compilerErrors.put(912, "No se permiten 'for' anidados");
         compilerErrors.put(913, "Formato inválido en la sentencia 'for'");
+
+        // validateIfBlock
+        compilerErrors.put(1000, "Falta la condición en la sentencia 'if'");
+        compilerErrors.put(1001, "Falta la palabra reservada 'then' después de la condición");
+        compilerErrors.put(1002, "Falta 'begin' después de 'then' en la siguiente línea (tabulación esperada)");
+        compilerErrors.put(1003, "La sentencia dentro del bloque 'then' debe existir y terminar con ';'");
+        compilerErrors.put(1004, "Falta 'end' que cierre el bloque 'then' o 'end' mal formado");
+        compilerErrors.put(1005, "La palabra 'else' debe alinearse con el 'if' y venir en la posición correcta");
+        compilerErrors.put(1006, "Falta 'begin' después de 'else' en la siguiente línea (tabulación esperada)");
+        compilerErrors.put(1007, "La sentencia dentro del bloque 'else' debe existir y terminar con ';'");
+        compilerErrors.put(1008, "Falta 'end' que cierre el bloque 'else' o 'end' mal formado");
+        compilerErrors.put(1009, "No se permiten 'if' anidados");
+        compilerErrors.put(1010, "Formato inválido en la sentencia 'if'");
+        
+    // validateRepeatBlock
+    compilerErrors.put(1100, "La palabra 'repeat' no debe llevar ';' ni otros tokens en la misma línea");
+    compilerErrors.put(1101, "Falta 'begin' después de 'repeat' en la siguiente línea");
+    compilerErrors.put(1102, "La sentencia dentro del repeat debe existir y terminar con ';'");
+    compilerErrors.put(1103, "Falta 'end;' que cierre el repeat o 'end' no termina con ';'");
+    compilerErrors.put(1104, "Falta 'until' con condición o no finaliza con ';'");
+    compilerErrors.put(1105, "Formato inválido en la sentencia 'repeat'");
     }
 
     public String getError(int code) {
