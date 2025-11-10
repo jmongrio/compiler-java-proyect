@@ -41,7 +41,8 @@ public class ErrorDictionary {
         compilerErrors.put(502, "Identificador de variable no válido");
         compilerErrors.put(503, "El identificador de variable usa una palabra reservada");
         compilerErrors.put(504, "Tipo de variable no válido");
-        compilerErrors.put(505, "La declaración de variable deben ubicarse después de declarar correctamente program y uses y antes del begin");
+        compilerErrors.put(505,
+                "La declaración de variable deben ubicarse después de declarar correctamente program y uses y antes del begin");
         compilerErrors.put(506, "Identificador de la variable solo debe iniciar con una letra o guión bajo");
         compilerErrors.put(507, "Identificador de la variable solo debe contener letras o guiones bajo");
 
@@ -73,6 +74,22 @@ public class ErrorDictionary {
         compilerErrors.put(804, "No se permiten comentarios después de un punto y coma en la misma línea");
         compilerErrors.put(805, "Comentarios con / deben tener 2 / en la forma //");
         compilerErrors.put(806, "No se permiten comentarios despues de end.");
+
+        // validateForBlock
+        compilerErrors.put(900, "No se permite declarar 'for' después de 'begin'");
+        compilerErrors.put(901, "Falta identificador de variable después de 'for'");
+        compilerErrors.put(902, "Variable usada en 'for' no fue declarada o su declaración es inválida");
+        compilerErrors.put(903, "Falta o formato inválido del operador de asignación ':='");
+        compilerErrors.put(904, "Falta el valor inicial en la declaración 'for'");
+        compilerErrors.put(905, "Falta la palabra reservada 'to' después del valor inicial");
+        compilerErrors.put(906, "Falta el valor final en la declaración 'for'");
+        compilerErrors.put(907, "Falta la palabra reservada 'do' después del valor final");
+        compilerErrors.put(908, "La palabra 'begin' debe aparecer en la siguiente línea con 4 espacios de tabulación");
+        compilerErrors.put(909, "La sentencia dentro del for debe existir, empezar en la línea siguiente, llevar 4 espacios de tabulación y terminar con ';'");
+        compilerErrors.put(910, "Falta 'end;' que cierre el for o 'end' no termina con punto y coma");
+        compilerErrors.put(911, "La sentencia 'for' debe estar en una sola línea");
+        compilerErrors.put(912, "No se permiten 'for' anidados");
+        compilerErrors.put(913, "Formato inválido en la sentencia 'for'");
     }
 
     public String getError(int code) {

@@ -20,7 +20,8 @@ public class ValidateConstBlock {
         while (position < tokens.size()) {
             Token current = peek();
 
-            if (current.getType() == TokenType.BEGIN) insideBegin = true;
+            if (current.getType() == TokenType.BEGIN)
+                insideBegin = true;
             if (insideBegin && current.getType() == TokenType.CONST) {
                 addError(400, current.getLine(), "Declaración encontrada después de BEGIN");
                 advance();
@@ -38,7 +39,8 @@ public class ValidateConstBlock {
 
     private void parseConstDeclaration() {
         Token identifier = consume(TokenType.IDENTIFIER, 403, "Se esperaba un identificador de constante");
-        if (identifier == null) return;
+        if (identifier == null)
+            return;
 
         if (isReservedWord(identifier)) {
             addError(404, identifier.getLine(), identifier.getLexeme());
@@ -124,7 +126,9 @@ public class ValidateConstBlock {
         }
     }
 
-    private boolean match(TokenType type) { return match(type, null); }
+    private boolean match(TokenType type) {
+        return match(type, null);
+    }
 
     private boolean match(TokenType type, String lexeme) {
         Token token = peek();
@@ -136,23 +140,38 @@ public class ValidateConstBlock {
     }
 
     private boolean isReservedWord(Token token) {
-        try { TokenType.valueOf(token.getLexeme().toUpperCase()); return true; }
-        catch (Exception e) { return false; }
+        try {
+            TokenType.valueOf(token.getLexeme().toUpperCase());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    private int peekSafeLine() { return peek() != null ? peek().getLine() : 0; }
+    private int peekSafeLine() {
+        return peek() != null ? peek().getLine() : 0;
+    }
 
-    private Token peek() { return position < tokens.size() ? tokens.get(position) : null; }
+    private Token peek() {
+        return position < tokens.size() ? tokens.get(position) : null;
+    }
 
-    private Token advance() { return position < tokens.size() ? tokens.get(position++) : null; }
+    private Token advance() {
+        return position < tokens.size() ? tokens.get(position++) : null;
+    }
 
-    private boolean isAtEnd() { return position >= tokens.size(); }
+    private boolean isAtEnd() {
+        return position >= tokens.size();
+    }
 
     private void addError(int code, int lineNumber, String extraInfo) {
         String message = errorDict.getError(code);
-        if (extraInfo != null && !extraInfo.isEmpty()) message += ": " + extraInfo;
+        if (extraInfo != null && !extraInfo.isEmpty())
+            message += ": " + extraInfo;
         errors.add(String.format("Error %d en línea %04d: %s", code, lineNumber, message));
     }
 
-    public List<String> getErrors() { return errors; }
+    public List<String> getErrors() {
+        return errors;
+    }
 }

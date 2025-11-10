@@ -63,13 +63,10 @@ public class SemanticAnalyzer {
 
             Token value = advance();
 
-            // Intentar registrar la constante y capturar duplicados
             try {
                 symbolTable.addSymbol(new Symbol(identifier.getLexeme(), inferType(value), true));
             } catch (Exception ex) {
-                // 608 = símbolo duplicado (puedes agregarlo a ErrorDictionary)
                 addError(608, identifier.getLine(), identifier.getLexeme());
-                // continuar analizando (no return) para no cortar el análisis
             }
 
             if (!consume(";", 401, "Falta punto y coma al final de la declaración de constante")) {
@@ -95,12 +92,10 @@ public class SemanticAnalyzer {
                 return;
             }
 
-            // Intentar registrar la variable y capturar duplicados
             try {
                 symbolTable.addSymbol(new Symbol(identifier.getLexeme(), type, false));
             } catch (Exception ex) {
                 addError(608, identifier.getLine(), identifier.getLexeme());
-                // continuar el análisis
             }
 
             if (!consume(";", 500, "Falta punto y coma al final de la declaración")) {
@@ -207,7 +202,6 @@ public class SemanticAnalyzer {
         }
     }
 
-    // === NUEVO: Método de formato unificado ===
     private void addError(int code, int lineNumber, String extraInfo) {
         String message = errorDict.getError(code);
 
