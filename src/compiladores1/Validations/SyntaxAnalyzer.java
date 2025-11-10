@@ -31,6 +31,8 @@ public class SyntaxAnalyzer {
         parseBeginAndEndBlocks(tokens, programIsValid);
         parseWriteAndWriteLnBlock(tokens, programIsValid);
         parseForBlock(tokens);
+        parseIfBlock(tokens);
+        parseRepeatBlock(tokens);
     }
 
     private void parseProgram(List<Token> tokens, String fileName) {
@@ -92,11 +94,29 @@ public class SyntaxAnalyzer {
     }
 
     private void parseForBlock(List<Token> tokens) {
-        ValidateForBlock validateFor = new ValidateForBlock(tokens, beginToken);
+        ValidateForBlock validateFor = new ValidateForBlock(tokens, beginToken, identificationList);
         validateFor.parseForBlock();
 
         if (!validateFor.getErrors().isEmpty()) {
             errors.addAll(validateFor.getErrors());
+        }
+    }
+
+    private void parseIfBlock(List<Token> tokens) {
+        ValidateIfBlock validateIf = new ValidateIfBlock(tokens, beginToken);
+        validateIf.parseIfBlock();
+
+        if (!validateIf.getErrors().isEmpty()) {
+            errors.addAll(validateIf.getErrors());
+        }
+    }
+
+    private void parseRepeatBlock(List<Token> tokens) {
+        ValidateRepeatBlock validateRepeat = new ValidateRepeatBlock(tokens);
+        validateRepeat.parseRepeatBlocks();
+
+        if (!validateRepeat.getErrors().isEmpty()) {
+            errors.addAll(validateRepeat.getErrors());
         }
     }
 

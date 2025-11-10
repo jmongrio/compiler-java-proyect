@@ -109,4 +109,51 @@
 ----------------------
 |       Errores      |
 ----------------------
-Error 910 en línea 0053: Falta 'end;' que cierre el for o 'end' no termina con punto y coma
+Error 1001 en línea 0028: Falta la palabra reservada 'then' después de la condición
+Error 1002 en línea 0028: Falta 'begin' después de 'then' en la siguiente línea (tabulación esperada)
+Error 1004 en línea 0028: Falta 'end' que cierre el bloque 'then' o 'end' mal formado
+Error 804 en línea 0028: No se permiten comentarios después de un punto y coma en la misma línea
+Error 1005 en línea 0028: La palabra 'else' debe alinearse con el 'if' y venir en la posición correcta
+Error 1006 en línea 0028: Falta 'begin' después de 'else' en la siguiente línea (tabulación esperada)
+Error 1004 en línea 0028: Falta 'end' que cierre el bloque 'then' o 'end' mal formado
+Error 808 en línea 0028: null
+Error 1001 en línea 0049: Falta la palabra reservada 'then' después de la condición
+Error 1002 en línea 0049: Falta 'begin' después de 'then' en la siguiente línea (tabulación esperada)
+Error 1004 en línea 0049: Falta 'end' que cierre el bloque 'then' o 'end' mal formado
+Error 804 en línea 0049: No se permiten comentarios después de un punto y coma en la misma línea
+Error 1005 en línea 0049: La palabra 'else' debe alinearse con el 'if' y venir en la posición correcta
+Error 1006 en línea 0049: Falta 'begin' después de 'else' en la siguiente línea (tabulación esperada)
+Error 1004 en línea 0049: Falta 'end' que cierre el bloque 'then' o 'end' mal formado
+Error 808 en línea 0049: null
+Error 1001 en línea 0060: Falta la palabra reservada 'then' después de la condición
+Error 1002 en línea 0060: Falta 'begin' después de 'then' en la siguiente línea (tabulación esperada)
+Error 1004 en línea 0060: Falta 'end' que cierre el bloque 'then' o 'end' mal formado
+Error 804 en línea 0060: No se permiten comentarios después de un punto y coma en la misma línea
+Error 1005 en línea 0060: La palabra 'else' debe alinearse con el 'if' y venir en la posición correcta
+Error 1006 en línea 0060: Falta 'begin' después de 'else' en la siguiente línea (tabulación esperada)
+Error 1004 en línea 0061: Falta 'end' que cierre el bloque 'then' o 'end' mal formado
+Error 808 en línea 0062: null
+Error 1001 en línea 0077: Falta la palabra reservada 'then' después de la condición
+Error 1002 en línea 0077: Falta 'begin' después de 'then' en la siguiente línea (tabulación esperada)
+Error 1004 en línea 0077: Falta 'end' que cierre el bloque 'then' o 'end' mal formado
+Error 804 en línea 0078: No se permiten comentarios después de un punto y coma en la misma línea
+Error 1005 en línea 0079: La palabra 'else' debe alinearse con el 'if' y venir en la posición correcta
+Error 1006 en línea 0079: Falta 'begin' después de 'else' en la siguiente línea (tabulación esperada)
+Error 1004 en línea 0079: Falta 'end' que cierre el bloque 'then' o 'end' mal formado
+Error 808 en línea 0079: null
+Error 1001 en línea 0083: Falta la palabra reservada 'then' después de la condición
+Error 1002 en línea 0083: Falta 'begin' después de 'then' en la siguiente línea (tabulación esperada)
+Error 1004 en línea 0083: Falta 'end' que cierre el bloque 'then' o 'end' mal formado
+Error 804 en línea 0084: No se permiten comentarios después de un punto y coma en la misma línea
+Error 1005 en línea 0085: La palabra 'else' debe alinearse con el 'if' y venir en la posición correcta
+Error 1006 en línea 0085: Falta 'begin' después de 'else' en la siguiente línea (tabulación esperada)
+Error 1004 en línea 0085: Falta 'end' que cierre el bloque 'then' o 'end' mal formado
+Error 808 en línea 0085: null
+Error 1001 en línea 0093: Falta la palabra reservada 'then' después de la condición
+Error 1002 en línea 0093: Falta 'begin' después de 'then' en la siguiente línea (tabulación esperada)
+Error 1004 en línea 0093: Falta 'end' que cierre el bloque 'then' o 'end' mal formado
+Error 804 en línea 0094: No se permiten comentarios después de un punto y coma en la misma línea
+Error 1005 en línea 0095: La palabra 'else' debe alinearse con el 'if' y venir en la posición correcta
+Error 1006 en línea 0095: Falta 'begin' después de 'else' en la siguiente línea (tabulación esperada)
+Error 1004 en línea 0095: Falta 'end' que cierre el bloque 'then' o 'end' mal formado
+Error 808 en línea 0095: null

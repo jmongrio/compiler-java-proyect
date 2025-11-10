@@ -10,7 +10,5 @@ import java.util.Set;
  */
 public class TokenClasifier {
     private static final Set<String> PATTERNS = new HashSet<>(Arrays.asList(
-    "RESERVED_WORD", "SEMI_COLON", "IDENTIFIER", "COLON"));
-    
-    
+    "RESERVED_WORD", "SEMI_COLON", "IDENTIFIER", "COLON"));   
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import compiladores1.Models.ErrorDictionary;
+import compiladores1.Models.IdentificationModel;
 import compiladores1.Models.Token;
 import compiladores1.Models.TokenType;
 
@@ -18,10 +19,12 @@ public class ValidateForBlock {
     private final ErrorDictionary errorDict = new ErrorDictionary();
     private int position = 0;
     private Token beginToken;
+    private List<IdentificationModel> identificationList;
 
-    public ValidateForBlock(List<Token> tokens, Token beginToken) {
+    public ValidateForBlock(List<Token> tokens, Token beginToken, List<IdentificationModel> identificationList) {
         this.tokens = tokens;
         this.beginToken = beginToken;
+        this.identificationList = identificationList;
     }
 
     public void parseForBlock() {
@@ -34,9 +37,9 @@ public class ValidateForBlock {
             }
 
             // if (current.getType() == TokenType.BEGIN) {
-            //     addError(900, current.getLine(), "Declaración encontrada después de BEGIN");
-            //     advance();
-            //     continue;
+            // addError(900, current.getLine(), "Declaración encontrada después de BEGIN");
+            // advance();
+            // continue;
             // }
 
             if (current.getType() == TokenType.FOR) {
@@ -50,89 +53,103 @@ public class ValidateForBlock {
 
     private void parseForDeclaration() {
         int positionAux = 0;
+        int deepth = 0;
 
         Token token = peek();
-        if(token.getType() != TokenType.IDENTIFIER) {
+        if (token.getType() != TokenType.IDENTIFIER) {
             addError(901, token.getLine(), null);
+        }
+        else{
+                boolean identifierFound = false;
+                for (IdentificationModel idToken : identificationList) {
+                    if (idToken.getIdentifier().getLexeme().equals(token.getLexeme())) {
+                        identifierFound = true;
+                        break;
+                    }
+                }
+                if (!identifierFound) {
+                    addError(902, token.getLine(), "El identificador '" + token.getLexeme() + "' no ha sido declarado");
+                }
         }
 
         advance();
         token = peek();
-        if(token.getType() != TokenType.SYMBOL || !":=".equals(token.getLexeme())) {
+        if (token.getType() != TokenType.SYMBOL || !":=".equals(token.getLexeme())) {
             addError(903, token.getLine(), "Se esperaba el operador ':=' completo");
         }
 
         advance();
         token = peek();
-        if(token.getType() != TokenType.NUMBER) {
+        if (token.getType() != TokenType.NUMBER) {
             addError(904, token.getLine(), null);
         }
 
         advance();
         token = peek();
-        if(token.getType() != TokenType.TO) {
+        if (token.getType() != TokenType.TO) {
             addError(905, token.getLine(), null);
         }
 
         advance();
         token = peek();
-        if(token.getType() != TokenType.NUMBER) {
+        if (token.getType() != TokenType.NUMBER) {
             addError(906, token.getLine(), null);
         }
 
         advance();
         token = peek();
-        if(token.getType() != TokenType.DO) {
+        if (token.getType() != TokenType.DO) {
             addError(907, token.getLine(), null);
         }
 
         advance();
         token = peek();
-        if(token.getType() != TokenType.BEGIN) {
+        if (token.getType() != TokenType.BEGIN) {
             addError(908, token.getLine(), null);
+        } else {
+            deepth++;
         }
 
-        positionAux = position;        
-        boolean existEnd = false;
-        boolean endSemiColon = false;
-        while (!existEnd) {
+        while (deepth > 0) {
             advance();
             token = peek();
 
-            if(tokens.get(position - 1).getType() == TokenType.SYMBOL && ";".equals(tokens.get(position - 1).getLexeme())) {
-                endSemiColon = true;
+            if (token.getType() == TokenType.BEGIN) {
+                deepth++;
             }
 
-            if(token.getType() == TokenType.END) {
-                existEnd = true;
+            if (token.getType() == TokenType.END) {
+                deepth--;
             }
         }
 
-        // if(endSemiColon) {
-        //     addError(911, tokens.get(positionAux).getLine(), "Hay un error en la sentencia de for");
-        // }
-
-        token = peek();
-        if(token.getType() != TokenType.END) {
+        if (token.getType() != TokenType.END) {
             addError(910, token.getLine(), null);
         }
 
         advance();
         token = peek();
-        if(token.getType() != TokenType.SYMBOL || !";".equals(token.getLexeme())) {
+        if (token.getType() != TokenType.SYMBOL || !";".equals(token.getLexeme())) {
             addError(910, token.getLine(), null);
         }
     }
 
-    private Token peek() { return position < tokens.size() ? tokens.get(position) : null; }
+    private Token peek() {
+        return position < tokens.size() ? tokens.get(position) : null;
+    }
 
-    private Token advance() { return position < tokens.size() ? tokens.get(position++) : null; }
+    private Token advance() {
+        return position < tokens.size() ? tokens.get(position++) : null;
+    }
 
     private void addError(int code, int lineNumber, String extraInfo) {
         String message = errorDict.getError(code);
-        if (extraInfo != null && !extraInfo.isEmpty()) message += ": " + extraInfo;
+        if (extraInfo != null && !extraInfo.isEmpty())
+            message += ": " + extraInfo;
         errors.add(String.format("Error %d en línea %04d: %s", code, lineNumber, message));
     }
 
-    public List<String> getErrors() { return errors; }
+    public List<String> getErrors() {
+        return errors;
+    }
 }
