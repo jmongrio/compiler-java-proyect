@@ -1,6 +1,5 @@
 package compiladores1;
 
-import compiladores1.Models.ErrorDictionary;
 import compiladores1.Models.ResponseModel;
 import compiladores1.Models.Token;
 import compiladores1.Validations.CommentValidator;
@@ -13,7 +12,6 @@ public class PascalInterpreter {
     private final String fileName;
     private List<String> lines = new ArrayList<>();
     private final List<String> errors = new ArrayList<>();
-    private final ErrorDictionary errorDict = new ErrorDictionary();
 
     public PascalInterpreter(String fileName) {
         this.fileName = fileName;
@@ -58,19 +56,7 @@ public class PascalInterpreter {
             }
         } else {
             lexer.getErrors().forEach(System.out::println);
-        }        
-
-//        SemanticAnalyzer semantic = new SemanticAnalyzer(lexer.getTokens());
-//        semantic.analyze();
-//        
-//        if(!semantic.getErrors().isEmpty()){
-//            errors.addAll(semantic.getErrors());
-//        }
-
-//        System.out.println("Símbolos encontrados:");
-//        semantic.getSymbolTable().getAll().forEach((k, v)
-//                -> System.out.println(v.getName() + " : " + v.getType() + (v.isConstant() ? " (const)" : ""))
-//        );
+        }
 
         ErrorFileManager errorFile = new ErrorFileManager(fileName, errors, lines);
         errorFile.writeErrors();

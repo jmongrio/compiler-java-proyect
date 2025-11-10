@@ -106,3 +106,7 @@
 0105     until tecla = 27;
 0106     //fin del programa
 0107 end.
+----------------------
+|       Errores      |
+----------------------
+Error 910 en línea 0053: Falta 'end;' que cierre el for o 'end' no termina con punto y coma

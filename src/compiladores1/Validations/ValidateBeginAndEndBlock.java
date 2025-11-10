@@ -18,6 +18,8 @@ public class ValidateBeginAndEndBlock {
     private final List<String> errors = new ArrayList<>();
     private final ErrorDictionary errorDict = new ErrorDictionary();
     private final boolean programIsValid;
+    private Token beginToken;
+    private Token endToken;
 
     ValidateBeginAndEndBlock(List<Token> tokens, boolean programIsValid) {
         this.tokens = tokens;
@@ -47,22 +49,36 @@ public class ValidateBeginAndEndBlock {
             }
 
             if (token.getType() == TokenType.END) {
-                advance();
-                token = peekSafe();
+                Token endToken = token;
+                Token next = (position + 1) < tokens.size() ? tokens.get(position + 1) : null;
 
-                if (token.getType() == TokenType.SYMBOL && token.getLexeme().equals(".")) {
-                    endDotLines.add(token);
-                    endLines.remove(endLines.size() - 1);
+                if (next != null && next.getType() == TokenType.SYMBOL && ".".equals(next.getLexeme()) && next.getLine() == endToken.getLine()) {
+                    endDotLines.add(endToken);
+                    position += 2;
                 } else {
-                    endLines.add(token);
+                    endLines.add(endToken);
+                    position += 1;
                 }
-                validateLineNoOtherTokens(token);
+
+                validateLineNoOtherTokens(endToken);
+                continue;
             }
 
             advance();
         }
 
         countBeginAndEndBlocks(beginLines, endLines, endDotLines);
+
+        if (beginAndEndAreValid(beginLines, endLines, endDotLines)) {
+            beginToken = beginLines.stream()
+                    .filter(t -> t.getType() == TokenType.BEGIN)
+                    .findFirst()
+                    .orElse(null);
+            endToken = endDotLines.stream()
+                    .filter(t -> t.getType() == TokenType.END)
+                    .findFirst()
+                    .orElse(null);
+        }
     }
 
     private void validateLineNoOtherTokens(Token token) {
@@ -78,16 +94,23 @@ public class ValidateBeginAndEndBlock {
         }
     }
 
+    private boolean beginAndEndAreValid(List<Token> beginLines, List<Token> endLines, List<Token> endDotLines) {
+        int beginCount = beginLines.size();
+        int endCount = endLines.size() + endDotLines.size();
+
+        return beginCount + 1 == endCount;
+    }
+
     private void countBeginAndEndBlocks(List<Token> beginLines, List<Token> endLines, List<Token> endDotLines) {
         int beginCount = beginLines.size();
         int endCount = endLines.size() + endDotLines.size();
 
-        if (beginCount > endCount) {
+        if (beginCount + 1 > endCount) {
             for (int i = endCount; i < beginCount; i++) {
                 Token token = beginLines.get(i);
                 addError(607, token.getLine(), "Falta 'end' correspondiente para 'begin'");
             }
-        } else if (endCount > beginCount) {
+        } else if (endCount > beginCount + 1) {
             for (int i = beginCount; i < endCount; i++) {
                 Token token;
                 if (i < endLines.size()) {
@@ -98,8 +121,8 @@ public class ValidateBeginAndEndBlock {
                 addError(607, token.getLine(), "Falta 'begin' correspondiente para 'end'");
             }
         }
-        
-        if(endDotLines.isEmpty()){
+
+        if (endDotLines.isEmpty()) {
             addError(606, 0, null);
         }
     }
@@ -129,5 +152,13 @@ public class ValidateBeginAndEndBlock {
 
     public List<String> getErrors() {
         return errors;
+    }
+
+    public Token getBeginToken() {
+        return beginToken;
+    }
+
+    public Token getEndToken() {
+        return endToken;
     }
 }

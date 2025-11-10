@@ -28,12 +28,6 @@ public class LexicalAnalyzer {
                 continue;
             }
 
-//            line = removeComments(line);
-//            if (line.trim().isEmpty()) {
-//                lineNumber++;
-//                continue;
-//            }
-
             if (!afterProgramUses) {
                 if (line.toLowerCase().contains("program") || line.toLowerCase().contains("uses")) {
                     afterProgramUses = true;
@@ -75,9 +69,26 @@ public class LexicalAnalyzer {
             tokens.add(new Token(token, type, lineNumber));
 
         } else if (token.matches("^[a-zA-Z_][a-zA-Z0-9_]*$")) {
-            if (token.equalsIgnoreCase("const") && !afterProgramUses) {
-                errors.add(String.format("Constante declarada fuera de la sección correcta en línea %d", lineNumber));
+            if(lower.equals("integer")){
+                tokens.add(new Token(token, TokenType.NUMBER, lineNumber));
+                return;
             }
+
+            if(lower.equals("word")){
+                tokens.add(new Token(token, TokenType.STRING, lineNumber));
+                return;
+            }
+
+            if(lower.equals("string")){
+                tokens.add(new Token(token, TokenType.STRING, lineNumber));
+                return;
+            }
+
+            if(lower.charAt(0) == '#'){
+                tokens.add(new Token(token, TokenType.CHAR_CODE, lineNumber));
+                return;
+            }
+
             tokens.add(new Token(token, TokenType.IDENTIFIER, lineNumber));
 
         } else if (token.matches("^(#[0-9]+)+$")) {
